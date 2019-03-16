@@ -3,6 +3,7 @@
 #include <string.h>
 #include <math.h>
 
+
 int readin(char *h,int& i,char el){
     int k=0,coor;
     char ch[100];
@@ -56,4 +57,11 @@ int main()
     s=r*r*M_PI;
     printf("\n%.14f\n",s);
     }
+    int stx,sty;
+    double gi;
+    stx=x2-x;
+    sty=y2-y;
+    gi=sqrt((stx*stx)+(sty*sty));
+    printf("%d - stx\n%d - sty\n%f - gi\n%d - r+r2\n",stx,sty,gi,(r+r2));
+    if (gi<=(r+r2)) printf("\nYes"); else printf("\nNo");
     }
