@@ -23,7 +23,7 @@ int main()
     int x, y, r, errortext, errornumber;
     int i;
     char h[1000], f1[] = { "circle" };
-
+    memset(h, ' ', sizeof(h));
     while (1) {
         errortext = 0;
         errornumber = 0;
@@ -36,13 +36,13 @@ int main()
             }
         }
 
-        while (i == 0) {
+        while (1) {
             if (h[i] == ',' || h[i] == '(' || h[i] == ')')
                 errornumber++;
-            if (h[i] == ')')
-                i++;
+            i++;
+            if (h[i] == ' ')
+                break;
         }
-
         if (errortext == 0 && errornumber == 4) {
             i = 7;
             x = readin(h, i, ',');
