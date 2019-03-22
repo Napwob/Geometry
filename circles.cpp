@@ -20,28 +20,37 @@ int readin(char* h, int& i, char el)
 
 int main()
 {
-    int x, y, r, en = 0, error = 0, errorcounter = 0;
+    int x, y, r, errortext, errornumber;
     int i;
-    double s;
     char h[1000], f1[] = { "circle" };
 
-    while (en == 0) {
+    while (1) {
+        errortext = 0;
+        errornumber = 0;
         printf("Please, enter 'circle(x,y,r)'\n");
         gets(h);
 
         for (i = 0; i < 6; i++) {
             if (h[i] != f1[i]) {
-                error++;
+                errortext++;
             }
         }
-        if (error == 0) {
+
+        while (i == 0) {
+            if (h[i] == ',' || h[i] == '(' || h[i] == ')')
+                errornumber++;
+            if (h[i] == ')')
+                i++;
+        }
+
+        if (errortext == 0 && errornumber == 4) {
             i = 7;
             x = readin(h, i, ',');
             y = readin(h, i, ',');
             r = readin(h, i, ')');
         }
 
-        if (error == 0 && x != 0 && y != 0 && r != 0) {
+        if (errortext == 0 && x != 0 && y != 0 && r != 0 && errornumber == 4) {
             double s, p;
             s = r * r * M_PI;
             p = 2 * M_PI * r;
@@ -52,13 +61,11 @@ int main()
             printf("Area = %.4f\n", s);
             printf("Perimeter= %.4f", p);
 
-            en++;
+            return 0;
         }
         else {
             printf("Error: unknown shape or wrong coordinates\n");
         }
-        error = 0;
     }
 }
-
 
