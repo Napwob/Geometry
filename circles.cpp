@@ -6,8 +6,7 @@
 int readin(char* h, int& i, char el)
 {
     int k = 0, coor;
-    char ch[100];
-    memset(ch, 0, sizeof(ch));
+    char ch[100]="";
     while (h[i] != el) {
         ch[k] = h[i];
         k++;
@@ -22,14 +21,14 @@ int main()
 {
     int x, y, r, errortext, errornumber;
     int i;
-    char h[1000], f1[] = { "circle" };
+    char h[1000], f1[] = { "circle" },h1;
     memset(h, ' ', sizeof(h));
     while (1) {
         errortext = 0;
         errornumber = 0;
+        memset(h, ' ', sizeof(h));
         printf("Please, enter 'circle(x,y,r)'\n");
         gets(h);
-
         for (i = 0; i < 6; i++) {
             if (h[i] != f1[i]) {
                 errortext++;
@@ -49,7 +48,7 @@ int main()
             y = readin(h, i, ',');
             r = readin(h, i, ')');
         }
-
+        if(h[i]!=NULL) errortext++;
         if (errortext == 0 && x != 0 && y != 0 && r != 0 && errornumber == 4) {
             double s, p;
             s = r * r * M_PI;
